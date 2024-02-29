@@ -5,3 +5,8 @@ While creating a feed for instagram I encountered the need to split an image int
 To do this I used pillow to split and then crop the image.
 
 Example: (what you will get when running the included test)
+
+<p align="middle">
+    <img src="test image.png" height="600" />
+    <img src="test showcase.png" height="600" />
+</p>
