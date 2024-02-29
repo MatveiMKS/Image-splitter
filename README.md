@@ -8,7 +8,7 @@ To do this I used pillow to split and then crop the image.
 To use the image splitter just execute the main which will have an ui to select the image, the number of rows and columns to split the image into and the output directory.
 
 
-##Example:
+## Example:
 (what you will get when running the included test)
 
 <p align="middle">
