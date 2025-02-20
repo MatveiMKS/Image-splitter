@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from image_splitter import split_image_into_grid, save_grid_squares
+from image_splitter import split_image_into_grid, save_grid_squares, add_margin
 
 def create_ui():
     """
@@ -33,8 +33,14 @@ def create_ui():
         image_path = file_path_entry.get()
         grid_size = (int(columns_entry.get()), int(rows_entry.get()))
         output_dir = output_dir_entry.get()
+        add_margin_flag = margin_var.get()
+        margin_size = int(margin_size_entry.get()) if add_margin_flag else 0
 
         grid_squares = split_image_into_grid(image_path, grid_size)
+        
+        if add_margin_flag:
+            grid_squares = [add_margin(square, margin_size) for square in grid_squares]
+
         save_grid_squares(grid_squares, output_dir)
 
         messagebox.showinfo("Status", "Process finished")
@@ -59,6 +65,15 @@ def create_ui():
     output_dir_entry.grid(row=3, column=1)
     tk.Button(root, text="Browse", command=browse_directory).grid(row=3, column=2)
 
-    tk.Button(root, text="Split Image", command=split_image).grid(row=4, column=1)
+    margin_var = tk.IntVar()
+    tk.Checkbutton(root, text="Add Margin", variable=margin_var).grid(row=4, column=0)
+    
+    tk.Label(root, text="Margin Size").grid(row=4, column=1)
+    margin_size_entry = tk.Entry(root)
+    margin_size_entry.grid(row=4, column=2)
+
+    tk.Button(root, text="Split Image", command=split_image).grid(row=5, column=1)
 
     root.mainloop()
+
+create_ui()

@@ -43,3 +43,11 @@ def save_grid_squares(grid_squares: list[Image.Image], output_folder: str) -> No
     for i, grid_square in enumerate(grid_squares):
         output_path = os.path.join(output_folder, f"grid_square_{i}.png")
         grid_square.save(output_path)
+
+def add_margin(image: Image.Image, margin_size: int) -> Image.Image:
+    ''' Adds a black margin to the left and right of the image. '''
+    width, height = image.size
+    new_width = width + 2 * margin_size
+    new_image = Image.new("RGB", (new_width, height), "black")
+    new_image.paste(image, (margin_size, 0))
+    return new_image
