@@ -23,3 +23,7 @@ env2/
 *.bak
 *.swp
 .DS_Store
+
+# pyinstaller
+build/
+*.spec
